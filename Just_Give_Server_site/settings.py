@@ -29,7 +29,7 @@ SECRET_KEY = 'django-insecure-al2388xl$1p!t^n$=jipktycnn+48wy!m*o=!sdmt-fj3-!z!7
 DEBUG = True
 
 ALLOWED_HOSTS = ["*"]
-# CSRF_TRUSTED_ORIGINS = ['https://justgive-api-sinu5550.onrender.com','https://*.127.0.0.1']
+CSRF_TRUSTED_ORIGINS = ['https://justgive-api-sinu5550.onrender.com','https://*.127.0.0.1']
 
 # Application definition
 
