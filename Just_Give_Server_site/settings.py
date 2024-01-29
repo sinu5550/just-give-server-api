@@ -31,12 +31,17 @@ DEBUG = True
 ALLOWED_HOSTS = ["*"]
 CSRF_TRUSTED_ORIGINS = ['https://justgive-api-sinu5550.onrender.com','https://*.127.0.0.1']
 CORS_ALLOWED_ORIGINS = [
-    "https://justgive-api-sinu5550.onrender.com",
-    "https://*.127.0.0.1",
-    "http://localhost:8080",
-    "http://127.0.0.1:9000",
+    "https://justgive-sinu5550.onrender.com",
+    "http://127.0.0.1:5500/",
 ]
-
+CORS_ALLOW_METHODS = (
+    "DELETE",
+    "GET",
+    "OPTIONS",
+    "PATCH",
+    "POST",
+    "PUT",
+)
 # Application definition
 
 INSTALLED_APPS = [
