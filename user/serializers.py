@@ -37,7 +37,7 @@ class RegistrationSerializer(serializers.ModelSerializer):
         user.set_password(password)
         user.is_active = False
         user.save()
-        models.UserProfile.objects.create(user=user, mobile_no=mobile_no)
+        models.UserProfile.objects.create(user=user, mobile_no=mobile_no, id = user.id)
 
 
         return user
