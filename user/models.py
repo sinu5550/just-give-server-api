@@ -3,7 +3,7 @@ from django.contrib.auth.models import User
 # Create your models here.
 class UserProfile(models.Model):
     user = models.OneToOneField(User,related_name='account', on_delete = models.CASCADE)
-    image = models.ImageField(upload_to='user/images/')
+    image = models.ImageField(upload_to='user/images/', default='user/images/default.png')
     mobile_no = models.CharField(max_length = 12,unique=True, blank = True, null = True)
     coins = models.PositiveIntegerField(default=0)
     
