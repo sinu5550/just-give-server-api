@@ -5,6 +5,8 @@ from django.contrib.auth.models import User
 
 class UserSerializer(serializers.ModelSerializer):
     user = serializers.StringRelatedField(many=False)
+    first_name = serializers.ReadOnlyField(source='user.first_name')
+    last_name = serializers.ReadOnlyField(source='user.last_name')
     class Meta:
         model = models.UserProfile
         fields = '__all__'
