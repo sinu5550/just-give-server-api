@@ -7,9 +7,9 @@ from . import serializers
 # Create your views here.
 class BooksWithSpecificUser(filters.BaseFilterBackend):
     def filter_queryset(self, request, queryset, view):
-        user = request.query_params.get("user")
-        if user:
-            return queryset.filter(user=user)
+        user_id = request.query_params.get("user_id")
+        if user_id:
+            return queryset.filter(user=user_id)
         return queryset
     
 class BookViewset(viewsets.ModelViewSet):
