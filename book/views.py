@@ -4,6 +4,9 @@ from rest_framework.response import Response
 from rest_framework import status
 from . import models
 from . import serializers
+from django.utils.decorators import method_decorator
+from django.contrib.auth.decorators import login_required
+from rest_framework.authentication import SessionAuthentication
 # Create your views here.
 class BooksWithSpecificUser(filters.BaseFilterBackend):
     def filter_queryset(self, request, queryset, view):
@@ -17,12 +20,4 @@ class BookViewset(viewsets.ModelViewSet):
     serializer_class = serializers.BookSerializer
     filter_backends = [BooksWithSpecificUser]
 
-    def perform_create(self, serializer):
-        
-        serializer.save(user=self.request.user)
-
-    def create(self, request, *args, **kwargs):
-        
-        response = super().create(request, *args, **kwargs)
-        return Response({'message': 'Book listed for donation successfully.'}, status=status.HTTP_201_CREATED)
     

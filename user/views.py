@@ -16,10 +16,16 @@ from django.core.mail import EmailMultiAlternatives
 from django.template.loader import render_to_string
 from django.shortcuts import redirect
 from django.contrib.sites.shortcuts import get_current_site
+from rest_framework import generics
 # Create your views here.
 class UserProfileViewset(viewsets.ModelViewSet):
     queryset = models.UserProfile.objects.all()
     serializer_class = serializers.UserSerializer
+
+class UserProfileUpdateView(generics.RetrieveUpdateAPIView):
+    queryset = models.UserProfile.objects.all()
+    serializer_class = serializers.UserProfileSerializer
+    lookup_field = 'user__id'
 
 class UserRegistrationApiView(APIView):
     serializer_class = serializers.RegistrationSerializer

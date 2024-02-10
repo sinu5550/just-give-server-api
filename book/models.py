@@ -7,7 +7,6 @@ class Book(models.Model):
     title = models.CharField(max_length=250)
     author = models.CharField(max_length=150)
     description = models.TextField()
-    is_available = models.BooleanField(default=True)
 
     def __str__(self):
         return f"{self.title} - posted by - {self.user}"

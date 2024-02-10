@@ -4,12 +4,39 @@ from django.contrib.auth.models import User
 
 
 class UserSerializer(serializers.ModelSerializer):
-    user = serializers.StringRelatedField(many=False)
-    first_name = serializers.ReadOnlyField(source='user.first_name')
-    last_name = serializers.ReadOnlyField(source='user.last_name')
+    username = serializers.CharField(source='user.username')
+    email = serializers.CharField(source='user.email')
+    first_name = serializers.CharField(source='user.first_name', required=False)
+    last_name = serializers.CharField(source='user.last_name', required=False)
+
     class Meta:
         model = models.UserProfile
         fields = '__all__'
+class UserDetailsSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = models.User
+        fields = ['id','email', 'first_name', 'last_name']
+class UserProfileSerializer(serializers.ModelSerializer):
+    user = UserDetailsSerializer()
+    class Meta:
+        model = models.UserProfile
+        fields = '__all__'
+    def update(self, instance, validated_data):
+        # Extract and update User fields separately
+        user_data = validated_data.pop('user', {})
+        user_serializer = self.fields['user']
+        user_instance = instance.user
+        user_instance = user_serializer.update(user_instance, user_data)
+        
+        # Update UserProfile fields
+        instance.image = validated_data.get('image', instance.image)
+        instance.mobile_no = validated_data.get('mobile_no', instance.mobile_no)
+        instance.coins = validated_data.get('coins', instance.coins)
+        
+        instance.save()
+        return instance
+        
+        
 
 class RegistrationSerializer(serializers.ModelSerializer):
     mobile_no = serializers.CharField(write_only=True, required=True)

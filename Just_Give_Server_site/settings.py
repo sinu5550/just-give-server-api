@@ -33,6 +33,7 @@ CSRF_TRUSTED_ORIGINS = ['https://justgive-api-sinu5550.onrender.com','https://*.
 CORS_ALLOWED_ORIGINS = [
     "https://justgive-sinu5550.onrender.com",
     "http://127.0.0.1:5500",
+    "https://justgive.netlify.app",
     
 ]
 CORS_ALLOW_METHODS = (
