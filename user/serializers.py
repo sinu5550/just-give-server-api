@@ -4,8 +4,8 @@ from django.contrib.auth.models import User
 
 
 class UserSerializer(serializers.ModelSerializer):
-    username = serializers.CharField(source='user.username')
-    email = serializers.CharField(source='user.email')
+    username = serializers.CharField(source='user.username', required=False)
+    email = serializers.CharField(source='user.email', required=False)
     first_name = serializers.CharField(source='user.first_name', required=False)
     last_name = serializers.CharField(source='user.last_name', required=False)
 
@@ -22,13 +22,11 @@ class UserProfileSerializer(serializers.ModelSerializer):
         model = models.UserProfile
         fields = '__all__'
     def update(self, instance, validated_data):
-        # Extract and update User fields separately
         user_data = validated_data.pop('user', {})
         user_serializer = self.fields['user']
         user_instance = instance.user
         user_instance = user_serializer.update(user_instance, user_data)
         
-        # Update UserProfile fields
         instance.image = validated_data.get('image', instance.image)
         instance.mobile_no = validated_data.get('mobile_no', instance.mobile_no)
         instance.coins = validated_data.get('coins', instance.coins)
