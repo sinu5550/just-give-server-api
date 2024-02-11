@@ -4,18 +4,14 @@ from django.contrib.auth.models import User
 
 
 class UserSerializer(serializers.ModelSerializer):
-    username = serializers.CharField(source='user.username', required=False)
-    email = serializers.CharField(source='user.email', required=False)
-    first_name = serializers.CharField(source='user.first_name', required=False)
-    last_name = serializers.CharField(source='user.last_name', required=False)
-
     class Meta:
         model = models.UserProfile
         fields = '__all__'
 class UserDetailsSerializer(serializers.ModelSerializer):
+    username = serializers.CharField(read_only=True)
     class Meta:
         model = models.User
-        fields = ['id','email', 'first_name', 'last_name']
+        fields = ['id','username','email', 'first_name', 'last_name']
 class UserProfileSerializer(serializers.ModelSerializer):
     user = UserDetailsSerializer()
     class Meta:
