@@ -69,6 +69,10 @@ class UserLoginSerializer(serializers.Serializer):
     username = serializers.CharField(required = True)
     password = serializers.CharField(required = True)
 
+class ReviewUserSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = models.UserProfile
+        fields = ['image']
 
 class ReviewSerializer(serializers.ModelSerializer):
     reviewer = serializers.StringRelatedField(many=False)
