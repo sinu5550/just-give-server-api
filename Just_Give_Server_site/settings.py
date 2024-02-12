@@ -45,7 +45,7 @@ CORS_ALLOW_METHODS = (
     "PUT",
 )
 
-SECURE_SSL_REDIRECT = True
+
 # Application definition
 
 INSTALLED_APPS = [
