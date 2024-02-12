@@ -92,10 +92,3 @@ class ReviewViewset(viewsets.ModelViewSet):
     
     queryset = models.Review.objects.all()
     serializer_class = serializers.ReviewSerializer
-
-    def perform_create(self, serializer):
-        serializer.save(reviewer=self.request.user)
-
-    def create(self, request, *args, **kwargs):
-        response = super().create(request, *args, **kwargs)
-        return Response({'message': 'Review created successfully.'}, status=status.HTTP_201_CREATED)

@@ -1,5 +1,6 @@
 from rest_framework import serializers
 from . import models
+from .models import UserProfile
 from django.contrib.auth.models import User
 
 
@@ -70,12 +71,12 @@ class UserLoginSerializer(serializers.Serializer):
     password = serializers.CharField(required = True)
 
 class ReviewUserSerializer(serializers.ModelSerializer):
+    
     class Meta:
-        model = models.UserProfile
-        fields = ['image']
+        model = models.User
+        fields = ['id','image']
 
 class ReviewSerializer(serializers.ModelSerializer):
-    reviewer = serializers.StringRelatedField(many=False)
     class Meta:
         model = models.Review
         fields = '__all__' 
