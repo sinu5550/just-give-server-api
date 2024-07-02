@@ -30,6 +30,7 @@ DEBUG = True
 
 ALLOWED_HOSTS = ["*"]
 CSRF_TRUSTED_ORIGINS = ['https://justgive-api-sinu5550.onrender.com','https://*.127.0.0.1']
+
 CORS_ALLOWED_ORIGINS = [
     "https://justgive-sinu5550.onrender.com",
     "http://127.0.0.1:5500",
